@@ -1,7 +1,7 @@
-[lepton.apps.terminal.default]
+[qubelets.apps.terminal.default]
 cmd = "alacritty"
 exec = "alacritty --command %s"
 
-[lepton.apps.terminal.graphics]
+[qubelets.apps.terminal.graphics]
 cmd = "kitty"
 exec = "kitty --command %s"

@@ -1,10 +1,10 @@
-# lepton
+# qubelets
 
 My Qubes script framework. The scripts rely on configured values. The code bridges the gaps between domains.
 
 ## The global configuration file
 
-This is the source of truth for how Lepton behaves.
+This is the source of truth for how Qubelets behaves.
 
 
 ```toml

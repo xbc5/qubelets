@@ -8,7 +8,7 @@ import textwrap
 import urllib.error
 import urllib.request
 from pathlib import Path
-from lepton.lib.common import constants
+from qubelets.lib.common import constants
 
 import qubesdb
 

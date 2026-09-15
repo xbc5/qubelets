@@ -1,5 +1,5 @@
 def main():
-    print("Hello from lepton!")
+    print("Hello from qubelets!")
 
 
 if __name__ == "__main__":
