@@ -4,6 +4,8 @@ from typing import Dict, Optional
 
 from pydantic import BaseModel
 
+from .script_config import GLOBAL_CONFIG_DIR
+
 
 class AppModel(BaseModel):
     """Represents a typical app."""
@@ -36,7 +38,7 @@ class App:
 class Config:
     """Loads and validates a config TOML, providing app resolution."""
 
-    DEFAULT_PATH = Path("/etc/config.toml")
+    DEFAULT_PATH = GLOBAL_CONFIG_DIR / "config.toml"
 
     def __init__(self, path: Path = DEFAULT_PATH):
         if path.exists():

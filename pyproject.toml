@@ -9,6 +9,10 @@ dependencies = [
     "tomlkit>=0.14.0",
 ]
 
+[project.scripts]
+asn-to-ip = "qubelets.cli.domu.asn_to_ip:main"
+qfw = "qubelets.cli.admin.qfw:main"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

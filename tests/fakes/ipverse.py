@@ -1,0 +1,72 @@
+PROTON = {
+    "asn": 62371,
+    "metadata": {
+        "handle": "PROTON",
+        "description": "Proton AG",
+        "countryCode": "CH",
+        "country": "Switzerland",
+        "origin": "authoritative",
+        "category": "business",
+        "networkRole": "access_provider",
+    },
+    "prefixes": {
+        "ipv4": [
+            "79.135.106.0/23",
+            "95.36.96.0/24",
+            "95.36.98.0/24",
+            "109.224.244.0/24",
+            "109.224.247.0/24",
+            "176.119.200.0/24",
+            "185.70.40.0/22",
+            "185.205.70.0/24",
+            "194.0.147.0/24",
+        ],
+        "ipv6": [
+            "2a05:2701:f00::/43",
+            "2a05:2701:f20::/44",
+            "2a05:2701:f40::/43",
+            "2a05:2701:fe00::/47",
+            "2a05:2701:fe02::/48",
+        ],
+    },
+}
+
+OVERLAPPING = {
+    "asn": 64500,
+    "metadata": {
+        "handle": "EXAMPLE",
+        "description": "Example",
+        "countryCode": "ZZ",
+        "country": "Example",
+        "origin": "authoritative",
+        "category": "business",
+        "networkRole": "access_provider",
+    },
+    "prefixes": {
+        "ipv4": ["185.70.41.0/24", "95.36.97.0/24", "203.0.113.0/24"],
+        "ipv6": ["2a05:2701:f00::/44"],
+    },
+}
+
+MERGED = {
+    "ipv4": [
+        "79.135.106.0/23",
+        "95.36.96.0/23",
+        "95.36.98.0/24",
+        "109.224.244.0/24",
+        "109.224.247.0/24",
+        "176.119.200.0/24",
+        "185.70.40.0/22",
+        "185.205.70.0/24",
+        "194.0.147.0/24",
+        "203.0.113.0/24",
+    ],
+    "ipv6": PROTON["prefixes"]["ipv6"],
+}
+
+
+def ipverse_url(asn: int) -> str:
+    return (
+        "https://raw.githubusercontent.com/ipverse/as-ip-blocks"
+        f"/master/as/{asn}/aggregated.json"
+    )

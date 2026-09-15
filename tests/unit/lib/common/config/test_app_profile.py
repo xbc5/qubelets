@@ -1,4 +1,4 @@
-from qubelets.lib.mgmt.config import Config
+from qubelets.lib.common.config import Config
 from tests.conf_builder import ConfBuilder
 
 
