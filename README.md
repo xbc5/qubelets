@@ -2,10 +2,25 @@
 
 My Qubes script framework. The scripts rely on configured values. The code bridges the gaps between domains.
 
+## Constraints
+
+### Domains
+
+`lib/` and `cli/` are split by domain: `common`, `domu`, `admin`, `dom0`.
+
+Domain imports are hierarchical. The allowed code flow is as follows:
+
+```
+common -> domu -> admin -> dom0
+```
+
+`Common` imports nothing, `domu` can import `common`, and so on.
+
+### Dependencies
+
 ## The global configuration file
 
 This is the source of truth for how Qubelets behaves.
-
 
 ```toml
 [app.terminal.default]
@@ -19,8 +34,6 @@ exec = "kitty --command %s"
 ```
 
 ### Key descriptions
-
-A description of each key.
 
 #### `app`
 Mappings of applications to their function.
