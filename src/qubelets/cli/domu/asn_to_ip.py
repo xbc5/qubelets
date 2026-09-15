@@ -3,7 +3,7 @@ import json
 import sys
 from typing import Sequence
 
-from pydantic import BaseModel, NonNegativeInt
+from pydantic import BaseModel, Field, NonNegativeInt
 
 from qubelets.cli.common.options import comma_list, load_settings, non_negative_int
 from qubelets.lib.common.http import HttpClient
@@ -19,7 +19,7 @@ class AsnToIpConfig(BaseModel):
     source: str = "ipverse"
     cache: NonNegativeInt = 6
     force: bool = False
-    json: bool = False
+    json_output: bool = Field(default=False, alias="json")
 
 
 def add_fetch_arguments(parser: argparse.ArgumentParser) -> None:
@@ -38,7 +38,9 @@ def build_parser() -> argparse.ArgumentParser:
     selection.add_argument("--asns", type=comma_list, metavar="ASN,...")
     selection.add_argument("--all", action="store_true")
     add_fetch_arguments(parser)
-    parser.add_argument("--json", action=argparse.BooleanOptionalAction)
+    parser.add_argument(
+        "--json", dest="json_output", action=argparse.BooleanOptionalAction
+    )
     return parser
 
 
@@ -61,7 +63,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"{SCRIPT}: error: {e}", file=sys.stderr)
         return 1
 
-    if args.json:
+    if args.json_output:
         print(json.dumps(prefixes.to_dict(), indent=2))
     else:
         for line in prefixes.to_strings():
