@@ -3,7 +3,7 @@
 ## References
 - `CONFIG`: The example configuration file in the [README](./README.md).
 - `CONF_BUILDER`: The [configuration builder](./tests/conf_builder.py).
-- `CONF_MODEL`: The [model](./src/qubelets/lib/common/config.py).
+- `CONF_MODEL`: The [model](./packages/common/src/qubelets/lib/common/config.py).
 
 ## Tooling
 

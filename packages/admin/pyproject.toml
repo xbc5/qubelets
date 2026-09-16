@@ -1,0 +1,20 @@
+[project]
+name = "qubelets-admin"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "qubelets-domu==0.1.0",
+]
+
+[project.scripts]
+qfw = "qubelets.cli.admin.qfw:main"
+
+[tool.uv.sources]
+qubelets-domu = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qubelets"]

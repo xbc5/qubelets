@@ -7,8 +7,12 @@ init:
     uv sync
 
 set-pydantic-version:
-    uv add "pydantic>={{dom0_pydantic}}"
+    uv add --package qubelets-common "pydantic>={{dom0_pydantic}}"
 
 test:
     uv run --python 3.13 --with "pydantic=={{dom0_pydantic}}" pytest -q   # dom0
     uv run --python 3.14 pytest -q                                     # domUs
+
+build:
+    rm -rf dist
+    uv build --all-packages --wheel --out-dir dist

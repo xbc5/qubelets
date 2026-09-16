@@ -2,6 +2,15 @@ version = 1
 revision = 3
 requires-python = ">=3.13"
 
+[manifest]
+members = [
+    "qubelets-admin",
+    "qubelets-common",
+    "qubelets-dom0",
+    "qubelets-domu",
+    "qubelets-workspace",
+]
+
 [[package]]
 name = "annotated-types"
 version = "0.8.0"
@@ -144,12 +153,59 @@ wheels = [
 ]
 
 [[package]]
-name = "qubelets"
+name = "qubelets-admin"
 version = "0.1.0"
-source = { editable = "." }
+source = { editable = "packages/admin" }
+dependencies = [
+    { name = "qubelets-domu" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "qubelets-domu", editable = "packages/domu" }]
+
+[[package]]
+name = "qubelets-common"
+version = "0.1.0"
+source = { editable = "packages/common" }
 dependencies = [
     { name = "pydantic" },
     { name = "tomlkit" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "pydantic", specifier = ">=2.10.6" },
+    { name = "tomlkit", specifier = ">=0.14.0" },
+]
+
+[[package]]
+name = "qubelets-dom0"
+version = "0.1.0"
+source = { editable = "packages/dom0" }
+dependencies = [
+    { name = "qubelets-admin" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "qubelets-admin", editable = "packages/admin" }]
+
+[[package]]
+name = "qubelets-domu"
+version = "0.1.0"
+source = { editable = "packages/domu" }
+dependencies = [
+    { name = "qubelets-common" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "qubelets-common", editable = "packages/common" }]
+
+[[package]]
+name = "qubelets-workspace"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "qubelets-dom0" },
 ]
 
 [package.dev-dependencies]
@@ -158,10 +214,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "pydantic", specifier = ">=2.10.6" },
-    { name = "tomlkit", specifier = ">=0.14.0" },
-]
+requires-dist = [{ name = "qubelets-dom0", editable = "packages/dom0" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest", specifier = ">=9.0.2" }]
